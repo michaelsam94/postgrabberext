@@ -1,0 +1,123 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.45;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 960px;
+  padding: 1.25rem 1.5rem 2.5rem;
+}
+
+header h1 {
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+}
+
+.lede {
+  margin: 0;
+  color: color-mix(in srgb, CanvasText 88%, transparent);
+  font-size: 0.95rem;
+}
+
+code {
+  font-size: 0.88em;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  align-items: center;
+}
+
+.opt-row {
+  margin: 0.25rem 0 1rem;
+  max-width: 52rem;
+}
+
+.check-label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  color: color-mix(in srgb, CanvasText 90%, transparent);
+  cursor: pointer;
+}
+
+.check-label input {
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+button,
+.file-btn {
+  font: inherit;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, CanvasText 22%, Canvas);
+  background: Canvas;
+  cursor: pointer;
+}
+
+.file-btn {
+  display: inline-block;
+}
+
+button.danger {
+  border-color: #b42318;
+  color: #b42318;
+}
+
+.status {
+  min-height: 1.25rem;
+  font-size: 0.9rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.table-wrap {
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, Canvas);
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.55rem 0.65rem;
+  border-bottom: 1px solid color-mix(in srgb, CanvasText 12%, Canvas);
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+  background: color-mix(in srgb, CanvasText 6%, Canvas);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+.preview {
+  max-width: 420px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: color-mix(in srgb, CanvasText 70%, transparent);
+}
+
+.cell-actions button {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.82rem;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PostGrabber — queue</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header>
+      <h1>PostGrabber queue</h1>
+      <p class="lede">
+        Saved posts live in <code>chrome.storage.local</code> as JSON. Use the right-click submenu on Facebook to add posts, then load them into the composer one at a time (Facebook’s UI changes often—verify before publishing).
+        <strong>Debugging:</strong> open DevTools (Console) on this page for queue actions; on the Facebook tab for composer automation. Lines are prefixed <code>[PostGrabber …]</code>. On Facebook, run <code>postgrabberLogCopy()</code> in the console to copy the last 200 log lines.
+      </p>
+    </header>
+
+    <section class="toolbar">
+      <button type="button" id="btnReload">Reload list</button>
+      <button type="button" id="btnExport">Export queue JSON</button>
+      <label class="file-btn">
+        Import JSON (append)
+        <input type="file" id="fileImport" accept="application/json,.json" hidden />
+      </label>
+      <button type="button" id="btnClear" class="danger">Clear queue</button>
+    </section>
+
+    <section class="toolbar">
+      <button type="button" id="btnLoadNext">Load next into Facebook composer</button>
+      <button type="button" id="btnLoadNextPop">Load next &amp; remove from queue</button>
+      <button type="button" id="btnPublishNextPop" class="danger">
+        Publish next (Next + Post) &amp; remove
+      </button>
+      <button type="button" id="btnPublishAll" class="danger">Publish entire queue (auto)</button>
+      <button type="button" id="btnOpenFb">Open Facebook</button>
+    </section>
+
+    <section class="opt-row">
+      <label class="check-label">
+        <input type="checkbox" id="chkLoadAutoAdvance" />
+        <span>
+          When using <strong>Load next</strong> (either button), also click <strong>Next</strong> then
+          <strong>Post</strong> after filling (English Facebook UI). Same automation as Publish, but queue removal still follows the button you chose.
+        </span>
+      </label>
+    </section>
+
+    <p id="status" class="status" role="status"></p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Preview</th>
+            <th>Media</th>
+            <th>Saved</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+
+    <script src="logger.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

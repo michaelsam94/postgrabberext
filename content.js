@@ -1300,11 +1300,29 @@ async function openComposerIfClosed() {
 }
 
 /**
+ * Arabic / Hebrew / Syriac and presentation forms — mixed English in the same string still benefits from `dir="auto"`.
+ * @param {string} s
+ */
+function textContainsStrongRtlScript(s) {
+  return typeof s === "string" && /[\u0590-\u05FF\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(s);
+}
+
+/**
+ * @param {HTMLElement} el
+ * @param {string} text
+ */
+function ensureLexicalEditorDirAuto(el, text) {
+  if (!(el instanceof HTMLElement) || !textContainsStrongRtlScript(text)) return;
+  el.setAttribute("dir", "auto");
+}
+
+/**
  * @param {HTMLElement} el
  * @param {string} text
  */
 function insertIntoLexicalEditor(el, text) {
   if (!text) return;
+  ensureLexicalEditorDirAuto(el, text);
   el.focus();
   try {
     document.execCommand("selectAll", false, undefined);
@@ -1321,11 +1339,9 @@ function insertIntoLexicalEditor(el, text) {
 
   if (!ok) {
     try {
-      document.execCommand(
-        "insertHTML",
-        false,
-        `<p>${escapeHtmlForComposer(text).replace(/\n/g, "</p><p>")}</p>`
-      );
+      const parts = escapeHtmlForComposer(text).split("\n");
+      const html = parts.map((p) => `<p dir="auto">${p}</p>`).join("");
+      document.execCommand("insertHTML", false, html);
       ok = true;
     } catch {
       // ignore
@@ -1353,6 +1369,7 @@ function insertIntoLexicalEditor(el, text) {
  */
 function appendPlainTextToEditor(el, text) {
   if (!text) return;
+  ensureLexicalEditorDirAuto(el, text);
   el.focus();
   const range = document.createRange();
   range.selectNodeContents(el);

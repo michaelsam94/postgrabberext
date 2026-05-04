@@ -75,6 +75,7 @@ button.danger {
   min-height: 1.25rem;
   font-size: 0.9rem;
   margin: 0.25rem 0 0.75rem;
+  unicode-bidi: plaintext;
 }
 
 .table-wrap {
@@ -91,7 +92,7 @@ table {
 
 th,
 td {
-  text-align: left;
+  text-align: start;
   padding: 0.55rem 0.65rem;
   border-bottom: 1px solid color-mix(in srgb, CanvasText 12%, Canvas);
   vertical-align: top;
@@ -110,6 +111,7 @@ tr:last-child td {
   max-width: 420px;
   white-space: pre-wrap;
   word-break: break-word;
+  unicode-bidi: plaintext;
 }
 
 .meta {

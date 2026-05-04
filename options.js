@@ -41,6 +41,7 @@ document.getElementById("fileImport").addEventListener("change", (e) => {
 
 function setStatus(text) {
   statusEl.textContent = text || "";
+  statusEl.setAttribute("dir", "auto");
 }
 
 async function getQueue() {
@@ -70,7 +71,8 @@ function formatDate(ts) {
 }
 
 function previewText(t, max = 220) {
-  const s = (t || "").replace(/\s+/g, " ").trim();
+  let s = (t || "").replace(/\r\n/g, "\n");
+  s = s.replace(/\n+/g, " ").trim();
   if (s.length <= max) return s;
   return `${s.slice(0, max)}…`;
 }
@@ -87,6 +89,7 @@ async function refresh() {
 
     const tdPrev = document.createElement("td");
     tdPrev.className = "preview";
+    tdPrev.setAttribute("dir", "auto");
     tdPrev.textContent = previewText(post.text);
     const meta = document.createElement("div");
     meta.className = "meta";
